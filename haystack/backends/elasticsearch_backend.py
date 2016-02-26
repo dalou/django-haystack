@@ -632,6 +632,7 @@ class ElasticsearchSearchBackend(BaseSearchBackend):
                         additional_fields['_distance'] = None
 
                 result = result_class(app_label, model_name, source[DJANGO_ID], raw_result['_score'], **additional_fields)
+                result.model = model # Force model set on QueryResult object !!
                 results.append(result)
             else:
                 hits -= 1
